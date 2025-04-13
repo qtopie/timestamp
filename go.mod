@@ -1,3 +1,3 @@
-module qtopie.rw/timestamp
+module github.com/qtopie/timestamp
 
 go 1.24.1
