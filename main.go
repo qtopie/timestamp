@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -31,7 +30,13 @@ func parseTime(s string) time.Time {
 
 	epoch, err := strconv.Atoi(s)
 	if err != nil {
-		log.Fatal(err)
+		loc, _ := time.LoadLocation("Asia/Shanghai")
+		t, err := time.ParseInLocation(time.DateOnly, s, loc)
+		if err != nil {
+			panic(err)
+		}
+
+		return t
 	}
 
 	// 3000 AD (公元3000年)
